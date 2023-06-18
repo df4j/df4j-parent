@@ -32,7 +32,7 @@
 
     <properties>
 
-        <df4j-parent.version>2.0.1</df4j-parent.version>
+        <df4j-parent.version>2.0.2</df4j-parent.version>
 
         <lombok.version>1.18.28</lombok.version>
 
@@ -45,6 +45,10 @@
         <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
+        <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
+        <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
+        <maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
+
 
         <!-- plugin properties -->
         <git.properties.filepath>git.${project.artifactId}.properties</git.properties.filepath>
@@ -84,11 +88,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-            </plugin>
-            <!-- maven-source-plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
             </plugin>
             <!-- maven-compiler-plugin -->
             <plugin>
@@ -140,7 +139,8 @@
                         <verbose>true</verbose>
                         <dateFormat>yyyy-MM-dd'T'HH:mm:ssZ</dateFormat>
                         <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                        <generateGitPropertiesFilename>${project.build.outputDirectory}/${git.properties.filepath}</generateGitPropertiesFilename>
+                        <generateGitPropertiesFilename>${project.build.outputDirectory}/${git.properties.filepath}
+                        </generateGitPropertiesFilename>
                         <failOnNoGitDirectory>false</failOnNoGitDirectory>
                         <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
                     </configuration>
@@ -258,6 +258,25 @@
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin}</version>
+                    <!--<configuration>
+                        <useReleaseProfile>false</useReleaseProfile>
+                    </configuration>-->
+                </plugin>
+                <!-- maven-install-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${maven-install-plugin.version}</version>
+                </plugin>
+                <!-- maven-deploy-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-deploy-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -277,6 +296,12 @@
             <id>deploy</id>
             <build>
                 <plugins>
+                    <!-- maven-source-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+                    <!-- maven-gpg-plugin -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
