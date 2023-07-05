@@ -32,7 +32,7 @@
 
     <properties>
 
-        <df4j-parent.version>2.0.2</df4j-parent.version>
+        <df4j-parent.version>2.0.3</df4j-parent.version>
 
         <lombok.version>1.18.28</lombok.version>
 
@@ -79,11 +79,6 @@
 
     <build>
         <plugins>
-            <!-- git-commit-id-plugin -->
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-            </plugin>
             <!-- flatten-maven-plugin -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -296,6 +291,11 @@
             <id>deploy</id>
             <build>
                 <plugins>
+                    <!-- git-commit-id-plugin -->
+                    <plugin>
+                        <groupId>pl.project13.maven</groupId>
+                        <artifactId>git-commit-id-plugin</artifactId>
+                    </plugin>
                     <!-- maven-source-plugin -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
